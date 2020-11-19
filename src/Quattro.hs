@@ -1,7 +1,7 @@
 module Quattro where
 
-import Data.Map.Strict ()
-import Data.Map.Strict as M
+import Data.Map.Strict (Map)
+import qualified Data.Map.Strict as M
 import Data.List (elemIndices, transpose)
 
 type Coordinates = (Int, Int)
