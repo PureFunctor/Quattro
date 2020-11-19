@@ -2,6 +2,7 @@ module Quattro where
 
 import Data.Map.Strict ()
 import Data.Map.Strict as M
+import Data.List (elemIndices, transpose)
 
 type Coordinates = (Int, Int)
 
@@ -38,3 +39,18 @@ prevR :: Rotation -> Rotation
 prevR r = case fromEnum r of
     0 -> R3
     n -> toEnum . abs $ (n - 1) `mod` 4
+
+rotate90 :: [[a]] -> [[a]]
+rotate90 = transpose . reverse
+
+inStrings :: Shape -> [String]
+inStrings J = ["x  ", "xxx", "   "]
+inStrings L = reverse <$> inStrings J
+inStrings I = ["    ", "xxxx", "    ", "    "]
+inStrings O = [" xx ", " xx ", "    "]
+inStrings S = [" xx", "xx ", "   "]
+inStrings Z = reverse <$> inStrings S
+inStrings T = [" x ", "xxx", "   "]
+
+inCoordinates :: [String] -> [Coordinates]
+inCoordinates = concat . zipWith (zip . repeat) [0 ..] . (elemIndices 'x' <$>)
