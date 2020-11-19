@@ -32,9 +32,9 @@ data Field
 succR :: Rotation -> Rotation
 succR r = case fromEnum r of
     3 -> R0
-    _ -> toEnum $ (fromEnum r + 1) `mod` 3
+    n -> toEnum $ (n + 1) `mod` 4
 
 prevR :: Rotation -> Rotation
 prevR r = case fromEnum r of
     0 -> R3
-    _ -> toEnum . abs $ (fromEnum r - 1) `mod` 3
+    n -> toEnum . abs $ (n - 1) `mod` 4
