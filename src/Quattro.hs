@@ -26,7 +26,7 @@ data Field
     = Field
     { field   :: Matrix Block
     , bounds  :: Coordinates
-    , current :: Block
+    , current :: Maybe Block
     }
     deriving (Eq, Show)
 
