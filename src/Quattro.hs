@@ -61,3 +61,6 @@ mkBlock s r = Block s cd r
     rs = iterate rotate90 . inStrings $ s
 
     cd = inCoordinates $ rs !! fromEnum r
+
+mkField :: Field
+mkField = Field M.empty (10, 30) Nothing
