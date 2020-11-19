@@ -54,3 +54,10 @@ inStrings T = [" x ", "xxx", "   "]
 
 inCoordinates :: [String] -> [Coordinates]
 inCoordinates = concat . zipWith (zip . repeat) [0 ..] . (elemIndices 'x' <$>)
+
+mkBlock :: Shape -> Rotation -> Block
+mkBlock s r = Block s cd r
+  where
+    rs = iterate rotate90 . inStrings $ s
+
+    cd = inCoordinates $ rs !! fromEnum r
