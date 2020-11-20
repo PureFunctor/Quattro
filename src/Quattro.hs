@@ -64,3 +64,16 @@ mkBlock s r = Block s cd r
 
 mkField :: Field
 mkField = Field M.empty (10, 30) Nothing
+
+placeToField :: Block -> Field -> Field
+placeToField b f = f'
+  where
+    f'
+        = f
+        { current = Just b'
+        }
+
+    b'
+        = b
+        { coordinates = (\(x, y) -> (x + 3, y + 6)) <$> coordinates b
+        }
