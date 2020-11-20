@@ -3,6 +3,7 @@ module Quattro where
 import Data.Map.Strict (Map)
 import qualified Data.Map.Strict as M
 import Data.List (elemIndices, transpose)
+import Data.Maybe (fromJust)
 
 type Coordinates = (Int, Int)
 
@@ -77,3 +78,20 @@ placeToField b f = f'
         = b
         { coordinates = (\(x, y) -> (x + 3, y + 6)) <$> coordinates b
         }
+
+commitBlock :: Field -> Field
+commitBlock f = f'
+  where
+    f'
+        = f
+        { field   = field'
+        , current = Nothing
+        }
+
+    field'
+        = M.fromList
+        . flip zip (repeat . fromJust . current $ f)
+        . coordinates
+        . fromJust
+        . current
+        $ f
